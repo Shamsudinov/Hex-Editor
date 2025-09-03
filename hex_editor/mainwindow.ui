@@ -18,6 +18,25 @@
     <item row="0" column="0">
      <widget class="QTableView" name="tableView"/>
     </item>
+    <item row="0" column="1">
+     <widget class="QTableWidget" name="tableWidget">
+      <row>
+       <property name="text">
+        <string>Десятичное значение</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Функция</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>значение</string>
+       </property>
+      </column>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
