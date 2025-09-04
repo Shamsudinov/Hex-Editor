@@ -41,25 +41,40 @@ void MainWindow::on_actionOpen_triggered(){
 //    char *buf = new char[buffSize];
 //    qint64 read = file.read(buf,buffSize);
 
-    QByteArray bytes = file.readAll();
+    QByteArray data = file.readAll();
 
     int columns = 16;
-    int rows = bytes.size() / columns;
+    int rows = (data.size() / columns);
+    if(data.size()%columns != 0)
+        rows++;
+
     hexModel->setColumnCount(columns);
     hexModel->setRowCount(rows);
-    hexModel->unpdateBuffer(bytes);
+    hexModel->unpdateBuffer(data);
+
     ui->tableView->setModel(hexModel);
+    ui->tableView->resizeColumnsToContents();
 
+    ui->tableWidgetServiceInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidgetServiceInfo->resizeColumnsToContents();
+    ui->tableWidgetServiceInfo->setItem(ROW_SIZEOF_FILE,COL_HEX,new QTableWidgetItem( QString::number(data.size(),16) ));
+    ui->tableWidgetServiceInfo->setItem(ROW_SIZEOF_FILE,COL_DEC,new QTableWidgetItem( QString::number(data.size()) ));
+//    int columnWidth = 10;
+//    for(int column = 0; column < ui->tableView->model()->columnCount(); column++){
+//        ui->tableView->setColumnWidth(column,columnWidth);
 
-//    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
-    int columnWidth = 10;
-    for(int column = 0; column < ui->tableView->model()->columnCount(); column++){
-        ui->tableView->setColumnWidth(column,columnWidth);
-    }
+//    }
 
 //    QByteArray bytes;
 //    while(!file.atEnd()){
 //        bytes = file.readAll();
 //    }
 //    qDebug()<<bytes.toHex(' ') << " " << bytes.toHex(' ').size();
+}
+
+void MainWindow::on_tableView_clicked(const QModelIndex &index)
+{
+    qDebug()<<"row: " << index.row();
+    qDebug()<<"col: " << index.column();
+    qDebug()<<"-------------------------";
 }

@@ -28,7 +28,15 @@ public:
 private slots:
     void on_actionOpen_triggered();
 
+    void on_tableView_clicked(const QModelIndex &index);
+
 private:
+    const int ROW_SIZEOF_FILE = 0;
+    const int ROW_CURRENT_POS = 1;
+
+    const int COL_HEX = 0;
+    const int COL_DEC = 1;
+
     HexModel *hexModel;
     Ui::MainWindow *ui;
 };
