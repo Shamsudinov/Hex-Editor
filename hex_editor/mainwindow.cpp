@@ -74,7 +74,22 @@ void MainWindow::on_actionOpen_triggered(){
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    qDebug()<<"row: " << index.row();
-    qDebug()<<"col: " << index.column();
-    qDebug()<<"-------------------------";
+
+    int currentRow = index.row();
+    int currentColumn = index.column();
+    int columnCount = ui->tableView->model()->columnCount();
+
+    int offset = currentRow*columnCount + currentColumn;
+    ui->tableWidgetServiceInfo->setItem(ROW_CURRENT_POS,COL_HEX,new QTableWidgetItem( QString::number(offset,16) ));
+    ui->tableWidgetServiceInfo->setItem(ROW_CURRENT_POS,COL_DEC,new QTableWidgetItem( QString::number(offset) ));
+
 }
+
+
+
+
+
+
+
+
+
