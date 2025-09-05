@@ -12,6 +12,7 @@
 #include <QFile>
 #include <QByteArray>
 #include "hexmodel.h"
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 private slots:
     void on_actionOpen_triggered();
 
@@ -37,6 +40,9 @@ private:
     const int COL_HEX = 0;
     const int COL_DEC = 1;
 
+    int currentRow;
+    int currentColumn;
+    QByteArray tempBuffer;
     HexModel *hexModel;
     Ui::MainWindow *ui;
 };

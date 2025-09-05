@@ -24,6 +24,30 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+//#include <QModelIndexList>
+#include <QVariant>
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_C && event->modifiers() == Qt::ControlModifier){
+        qDebug()<<"Ctrl+C";
+
+        QItemSelectionModel *model = ui->tableView->selectionModel();
+        QModelIndexList list = model->selectedIndexes();
+        tempBuffer.clear();
+        for(int i=0; i < list.size(); i ++){
+            tempBuffer += list[i].data().value<QByteArray>();
+        }
+        qDebug()<<tempBuffer;
+    }
+
+    if(event->key() == Qt::Key_V && event->modifiers() == Qt::ControlModifier){
+        qDebug()<<"Ctrl+V";
+        qDebug()<< "currentRow: " << currentRow;
+        qDebug()<< "currentColumn: " << currentColumn;
+        hexModel->insertData(tempBuffer,currentRow,currentColumn);
+    }
+//    QWidget::keyPressEvent(event);
+}
 
 using namespace std;
 #include <string>
@@ -54,6 +78,8 @@ void MainWindow::on_actionOpen_triggered(){
 
     ui->tableView->setModel(hexModel);
     ui->tableView->resizeColumnsToContents();
+//    ui->tableView->setShowGrid(false); // hide or shor table grids
+//    ui->tableView->setStyleSheet(QString("QTableView{ color: red; } ")); // color change
 
     ui->tableWidgetServiceInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidgetServiceInfo->resizeColumnsToContents();
@@ -75,8 +101,8 @@ void MainWindow::on_actionOpen_triggered(){
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
 
-    int currentRow = index.row();
-    int currentColumn = index.column();
+    currentRow = index.row();
+    currentColumn = index.column();
     int columnCount = ui->tableView->model()->columnCount();
 
     int offset = currentRow*columnCount + currentColumn;

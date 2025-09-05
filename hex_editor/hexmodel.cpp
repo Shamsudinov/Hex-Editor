@@ -4,50 +4,42 @@ HexModel::HexModel() :
     rows(0),
     columns(0),
     bufferSize(0),
-    matrix(nullptr){
+    matrix(){
 
 }
 
 HexModel::~HexModel()
 {
-    if(matrix != nullptr){
-        for (int i = 0; i < rows; i++)
-            delete[] matrix[i];
-        delete [] matrix;
-    }
+    matrix.clear();
 }
 
 void HexModel::setBufferSize(int size){
     bufferSize = size;
 }
 
+void HexModel::insertData(const QByteArray &data,int row,int column){
+
+}
+void HexModel::insertData(const std::vector<char>& newRows){
+
+}
+
 void HexModel::unpdateBuffer(const QByteArray& data){
 
-    hexArray = data;
-    if(matrix != nullptr)
-        delete [] matrix;
-
-    matrix = new char*[rows];
-    for(int i = 0; i < rows; i++){
-        matrix[i] = new char[columns];
-    }
+    if(!matrix.empty())
+        matrix.clear();
 
     int currentByte = 0;
     for(int i = 0; i < rows; i++){
+        std::vector<char> columnData;
         for(int j = 0; j < columns; j++){
             if(currentByte < data.size()){
-                matrix[i][j] = data.at(currentByte);
+                columnData.push_back( data.at(currentByte) );
                 currentByte++;
             }
         }
+        matrix.push_back(columnData);
     }
-
-//    for(int i = 0; i < rows; i++){
-//        for(int j = 0; j < columns; j++){
-//            std::cout << matrix[i][j] << " ";
-//        }
-//        std::cout << std::endl;
-//    }
 }
 
 void HexModel::processBuffer(char *data, int size){

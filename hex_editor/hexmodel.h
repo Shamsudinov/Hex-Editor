@@ -7,19 +7,21 @@
 #include <iomanip>
 #include <sstream>
 #include <iostream>
+#include <vector>
 
 class HexModel : public QAbstractTableModel
 {
     int rows;
     int columns;
     int bufferSize;
-    char **matrix;
-    QByteArray hexArray;
+    std::vector<std::vector<char>> matrix;
 public:
     HexModel();
     ~HexModel();
 
     void setBufferSize(int);
+    void insertData(const QByteArray&,int,int);
+    void insertData(const std::vector<char>&);
     void unpdateBuffer(const QByteArray&);
     void processBuffer(char*,int);
 
