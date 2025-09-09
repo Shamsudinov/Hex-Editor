@@ -3,6 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , serializeUI(new SerializeUserInterface(this))
     , hexModel(new HexModel())
     , ui(new Ui::MainWindow)
 {
@@ -17,7 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
 //    }
 
 
-
+    ui->tabWidget->setCurrentIndex(1);
+    ui->tab_2->layout()->addWidget(serializeUI);
 }
 
 MainWindow::~MainWindow()

@@ -25,34 +25,58 @@
      <widget class="QTableView" name="tableView">
       <property name="minimumSize">
        <size>
-        <width>600</width>
+        <width>550</width>
         <height>0</height>
        </size>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QTableWidget" name="tableWidgetServiceInfo">
-      <row>
-       <property name="text">
-        <string>Размер файла</string>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string>Текущий адрес</string>
-       </property>
-      </row>
-      <column>
-       <property name="text">
-        <string>hex</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>dec</string>
-       </property>
-      </column>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Общая информация</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QTableWidget" name="tableWidgetServiceInfo">
+          <row>
+           <property name="text">
+            <string>Размер файла</string>
+           </property>
+          </row>
+          <row>
+           <property name="text">
+            <string>Текущий адрес</string>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>hex</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>dec</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Парсер</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_3"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>

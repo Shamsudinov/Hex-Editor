@@ -18,14 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     hexmodel.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    serializeuserinterface.cpp
 
 HEADERS += \
     hexmodel.h \
-    mainwindow.h
+    mainwindow.h \
+    serializeuserinterface.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    serializeuserinterface.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

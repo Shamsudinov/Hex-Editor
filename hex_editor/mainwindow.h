@@ -11,8 +11,10 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QByteArray>
-#include "hexmodel.h"
 #include <QKeyEvent>
+#include "hexmodel.h"
+#include "serializeuserinterface.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,6 +45,7 @@ private:
     int currentRow;
     int currentColumn;
     QByteArray tempBuffer;
+    SerializeUserInterface *serializeUI;
     HexModel *hexModel;
     Ui::MainWindow *ui;
 };
