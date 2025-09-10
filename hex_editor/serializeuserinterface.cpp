@@ -33,11 +33,28 @@ void SerializeUserInterface::on_listWidget_itemClicked(QListWidgetItem *item)
 void SerializeUserInterface::on_btnAddParameter_clicked()
 {
 
+    SerializeInfo info;
+    vector.append(info);
     int rowCount = ui->paramsTable->rowCount();
     ui->paramsTable->insertRow(rowCount);
-//    ui->paramsTable->setItem(rowCount,0,new QTableWidgetItem(s.name));
-//    ui->paramsTable->setItem(rowCount,1,new QTableWidgetItem(QString::number(s.size)));
-//    ui->paramsTable->setItem(rowCount,2,new QTableWidgetItem(s.hex));
-//    ui->paramsTable->setItem(rowCount,3,new QTableWidgetItem(s.dec));
-//    ui->paramsTable->setItem(rowCount,4,new QTableWidgetItem(s.alg));
+    ui->paramsTable->setItem(rowCount,0,new QTableWidgetItem("Название параметра"));
+    ui->paramsTable->setItem(rowCount,1,new QTableWidgetItem("Размер в битах"));
+    ui->paramsTable->setItem(rowCount,2,new QTableWidgetItem("HEX"));
+    ui->paramsTable->setItem(rowCount,3,new QTableWidgetItem("DEC"));
+    ui->paramsTable->setItem(rowCount,4,new QTableWidgetItem("Алгоритм распаковки"));
+}
+
+void SerializeUserInterface::on_btnSaveParams_clicked()
+{
+    int rows = ui->paramsTable->rowCount();
+    int columns = ui->paramsTable->columnCount();
+
+    for( int i = 0; i < rows; i++){
+
+        vector[i].setName(ui->paramsTable->item(i,0)->text());
+        vector[i].setSize(ui->paramsTable->item(i,1)->text().toInt());
+        vector[i].setHex(ui->paramsTable->item(i,2)->text());
+        vector[i].setDec(ui->paramsTable->item(i,3)->text());
+        vector[i].setAlg(ui->paramsTable->item(i,4)->text());
+    }
 }

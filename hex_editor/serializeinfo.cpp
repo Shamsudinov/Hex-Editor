@@ -1,8 +1,16 @@
 #include "serializeinfo.h"
 
-SerializeInfo::SerializeInfo()
-{
+SerializeInfo::SerializeInfo(){
 
+}
+
+SerializeInfo::SerializeInfo(const SerializeInfo &info){
+
+    name = info.getName();
+    size = info.getSize();
+    hex = info.getHex();
+    dec = info.getDec();
+    alg = info.getAlg();
 }
 
 QString SerializeInfo::getName() const{
@@ -43,4 +51,9 @@ void SerializeInfo::setDec(const QString &dec){
 
 void SerializeInfo::setAlg(const QString &alg){
     this->alg = alg;
+}
+
+void SerializeInfo::print() const
+{
+    qDebug() << name << " " << size << " " << hex << " " << dec << " " << alg;
 }

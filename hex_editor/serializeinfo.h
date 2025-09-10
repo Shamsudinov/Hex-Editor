@@ -2,6 +2,7 @@
 #define SERIALIZEINFO_H
 
 #include <QString>
+#include <QDebug>
 
 class SerializeInfo
 {
@@ -12,6 +13,7 @@ class SerializeInfo
     QString alg;
 public:
     SerializeInfo();
+    SerializeInfo(const SerializeInfo&);
 
     QString getName() const;
     int getSize() const;
@@ -24,6 +26,8 @@ public:
     void setHex(const QString&);
     void setDec(const QString&);
     void setAlg(const QString&);
+
+    void print() const;
 };
 
 #endif // SERIALIZEINFO_H

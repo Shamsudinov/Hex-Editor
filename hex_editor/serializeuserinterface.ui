@@ -269,6 +269,19 @@
     <string>Сохранить</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btnSaveParams_2">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>400</y>
+     <width>136</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>print</string>
+   </property>
+  </widget>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>

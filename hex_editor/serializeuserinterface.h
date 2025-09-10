@@ -4,7 +4,8 @@
 #include <QWidget>
 #include <QString>
 #include <QListWidget>
-#include <QVector>
+#include <QTableWidget>
+#include <QList>
 
 #include "serializeinfo.h"
 
@@ -29,8 +30,10 @@ private slots:
 
     void on_btnAddParameter_clicked();
 
+    void on_btnSaveParams_clicked();
+
 private:
-    QVector<SerializeInfo> vector;
+    QList<SerializeInfo> vector;
     Ui::SerializeUserInterface *ui;
 };
 
