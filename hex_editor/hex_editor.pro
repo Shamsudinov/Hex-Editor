@@ -19,11 +19,13 @@ SOURCES += \
     hexmodel.cpp \
     main.cpp \
     mainwindow.cpp \
+    serializeinfo.cpp \
     serializeuserinterface.cpp
 
 HEADERS += \
     hexmodel.h \
     mainwindow.h \
+    serializeinfo.h \
     serializeuserinterface.h
 
 FORMS += \

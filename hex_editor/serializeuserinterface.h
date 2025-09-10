@@ -3,6 +3,11 @@
 
 #include <QWidget>
 #include <QString>
+#include <QListWidget>
+#include <QVector>
+
+#include "serializeinfo.h"
+
 namespace Ui {
 class SerializeUserInterface;
 }
@@ -20,7 +25,12 @@ private slots:
 
     void on_btnDeleteTemplate_clicked();
 
+    void on_listWidget_itemClicked(QListWidgetItem *item);
+
+    void on_btnAddParameter_clicked();
+
 private:
+    QVector<SerializeInfo> vector;
     Ui::SerializeUserInterface *ui;
 };
 

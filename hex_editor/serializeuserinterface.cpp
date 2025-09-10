@@ -24,3 +24,20 @@ void SerializeUserInterface::on_btnAddTemplate_clicked(){
 void SerializeUserInterface::on_btnDeleteTemplate_clicked(){
     QScopedPointer ptr(ui->listWidget->currentItem());
 }
+
+void SerializeUserInterface::on_listWidget_itemClicked(QListWidgetItem *item)
+{
+    ui->groupBox->setTitle(item->text());
+}
+
+void SerializeUserInterface::on_btnAddParameter_clicked()
+{
+
+    int rowCount = ui->paramsTable->rowCount();
+    ui->paramsTable->insertRow(rowCount);
+//    ui->paramsTable->setItem(rowCount,0,new QTableWidgetItem(s.name));
+//    ui->paramsTable->setItem(rowCount,1,new QTableWidgetItem(QString::number(s.size)));
+//    ui->paramsTable->setItem(rowCount,2,new QTableWidgetItem(s.hex));
+//    ui->paramsTable->setItem(rowCount,3,new QTableWidgetItem(s.dec));
+//    ui->paramsTable->setItem(rowCount,4,new QTableWidgetItem(s.alg));
+}
