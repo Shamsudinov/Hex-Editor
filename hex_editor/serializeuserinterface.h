@@ -6,7 +6,7 @@
 #include <QListWidget>
 #include <QTableWidget>
 #include <QList>
-
+#include <QPair>
 #include "serializeinfo.h"
 
 namespace Ui {
@@ -16,6 +16,8 @@ class SerializeUserInterface;
 class SerializeUserInterface : public QWidget
 {
     Q_OBJECT
+
+    void clearCellsContent(QTableWidget*) const;
 
 public:
     explicit SerializeUserInterface(QWidget *parent = nullptr);
@@ -33,7 +35,8 @@ private slots:
     void on_btnSaveParams_clicked();
 
 private:
-    QList<SerializeInfo> vector;
+    QPair<int,QList<SerializeInfo>> pair;
+    QList<QPair<int,QList<SerializeInfo>>> vector;
     Ui::SerializeUserInterface *ui;
 };
 

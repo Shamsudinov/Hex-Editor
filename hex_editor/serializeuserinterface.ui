@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1032</width>
+    <width>850</width>
     <height>532</height>
    </rect>
   </property>
@@ -72,202 +72,73 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="btnAddParameter">
-   <property name="geometry">
-    <rect>
-     <x>18</x>
-     <y>370</y>
-     <width>136</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Добавить </string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnDeleteParam">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>370</y>
-     <width>135</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Удалить</string>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>10</y>
-     <width>711</width>
+     <x>300</x>
+     <y>5</y>
+     <width>541</width>
      <height>511</height>
     </rect>
    </property>
    <property name="title">
     <string>Название Шаблона</string>
    </property>
-   <widget class="QLabel" name="labelParameterName_4">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
-      <width>61</width>
-      <height>19</height>
+      <y>20</y>
+      <width>521</width>
+      <height>481</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Параметр</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QTableWidget" name="paramsTable">
+       <property name="columnCount">
+        <number>5</number>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="btnAddParameter">
+         <property name="text">
+          <string>Добавить </string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnDeleteParam">
+         <property name="text">
+          <string>Удалить</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnSaveParams">
+         <property name="text">
+          <string>Сохранить</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
-   <widget class="QLineEdit" name="lineEditParameterName_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>120</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBoxParameterSize_4">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>60</y>
-      <width>120</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterSize_4">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>30</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Размер</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterDec">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>30</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Значение ( dec )</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterHexValue_2">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>60</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterHex">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>30</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Значение ( hex )</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterAlg">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>30</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Алгоритм распаковки</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterDecValue">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>60</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterAlgVal">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>60</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-</string>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="paramsTable">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>100</y>
-      <width>691</width>
-      <height>401</height>
-     </rect>
-    </property>
-    <property name="columnCount">
-     <number>5</number>
-    </property>
-    <attribute name="horizontalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-   </widget>
-  </widget>
-  <widget class="QPushButton" name="btnSaveParams">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>400</y>
-     <width>136</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Сохранить</string>
-   </property>
   </widget>
   <widget class="QPushButton" name="btnSaveParams_2">
    <property name="geometry">
