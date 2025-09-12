@@ -1,6 +1,11 @@
 #include "serializeinfo.h"
 
-SerializeInfo::SerializeInfo(){
+SerializeInfo::SerializeInfo() :
+    name("Название параметра"),
+    size(0),
+    hex("HEX"),
+    dec("DEC"),
+    alg("Алгоритм распаковки") {
 
 }
 

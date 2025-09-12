@@ -18,7 +18,8 @@ class SerializeUserInterface : public QWidget
     Q_OBJECT
 
     void clearCellsContent(QTableWidget*) const;
-
+    void saveTableRow(SerializeInfo&,QTableWidget*,int) const;
+    void fillTableRow(const SerializeInfo&,QTableWidget*,int) const;
 public:
     explicit SerializeUserInterface(QWidget *parent = nullptr);
     ~SerializeUserInterface();

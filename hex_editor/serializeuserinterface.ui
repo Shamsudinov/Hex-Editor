@@ -13,70 +13,11 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QGroupBox" name="groupBoxSerializeSettings">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>270</y>
-     <width>281</width>
-     <height>91</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string/>
-   </property>
-   <widget class="QLineEdit" name="lineEditParameterName">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>20</y>
-      <width>120</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterName">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Параметр</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelParameterSize">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>52</y>
-      <width>120</width>
-      <height>19</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Размер</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBoxParameterSize">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>50</y>
-      <width>120</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-  </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>5</y>
+     <x>210</x>
+     <y>0</y>
      <width>541</width>
      <height>511</height>
     </rect>
@@ -84,7 +25,7 @@
    <property name="title">
     <string>Название Шаблона</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -140,25 +81,12 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QPushButton" name="btnSaveParams_2">
-   <property name="geometry">
-    <rect>
-     <x>160</x>
-     <y>400</y>
-     <width>136</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>print</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>281</width>
+     <width>201</width>
      <height>225</height>
     </rect>
    </property>

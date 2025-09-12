@@ -10,6 +10,24 @@ void SerializeUserInterface::clearCellsContent(QTableWidget *table) const {
     }
 }
 
+void SerializeUserInterface::saveTableRow(SerializeInfo &info, QTableWidget *table, int row) const{
+
+    info.setName(table->item(row,0)->text());
+    info.setSize(table->item(row,1)->text().toInt());
+    info.setHex(table->item(row,2)->text());
+    info.setDec(table->item(row,3)->text());
+    info.setAlg(table->item(row,4)->text());
+}
+
+void SerializeUserInterface::fillTableRow(const SerializeInfo &info, QTableWidget *table, int row) const{
+
+    table->setItem(row,0,new QTableWidgetItem(info.getName()));
+    table->setItem(row,1,new QTableWidgetItem(QString::number(info.getSize())));
+    table->setItem(row,2,new QTableWidgetItem(info.getHex()));
+    table->setItem(row,3,new QTableWidgetItem(info.getDec()));
+    table->setItem(row,4,new QTableWidgetItem(info.getAlg()));
+}
+
 SerializeUserInterface::SerializeUserInterface(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SerializeUserInterface)
@@ -41,8 +59,8 @@ void SerializeUserInterface::on_btnDeleteTemplate_clicked(){
     QScopedPointer ptr(ui->listWidget->currentItem());
 }
 
-void SerializeUserInterface::on_listWidget_itemClicked(QListWidgetItem *item)
-{
+void SerializeUserInterface::on_listWidget_itemClicked(QListWidgetItem *item){
+
     ui->groupBox->setTitle(item->text());
     ui->btnAddParameter->setEnabled(true);
     ui->btnSaveParams->setEnabled(true);
@@ -60,22 +78,14 @@ void SerializeUserInterface::on_listWidget_itemClicked(QListWidgetItem *item)
     }
 
     for(int i = 0; i < vector.size(); i++){
+
         if(vector[i].first == currrentTemplateNumber){
 
             for(int currRow = 0; currRow < vector[i].second.size(); currRow++){
-//                qDebug()<<"currRow: " << currRow << " " << currrentTemplateNumber;
-//                ui->paramsTable->item(currRow,0)->setText(vector[i].second[currRow].getName());
-//                ui->paramsTable->item(currRow,1)->setText(QString::number(vector[i].second[currRow].getSize()));
-//                ui->paramsTable->item(currRow,2)->setText(vector[i].second[currRow].getHex());;
-//                ui->paramsTable->item(currRow,3)->setText(vector[i].second[currRow].getDec());;
-//                ui->paramsTable->item(currRow,4)->setText(vector[i].second[currRow].getAlg());
 
-                ui->paramsTable->setItem(currRow,0,new QTableWidgetItem(vector[i].second[currRow].getName()));
-                ui->paramsTable->setItem(currRow,1,new QTableWidgetItem( QString::number(vector[i].second[currRow].getSize())));
-                ui->paramsTable->setItem(currRow,2,new QTableWidgetItem(vector[i].second[currRow].getHex()));
-                ui->paramsTable->setItem(currRow,3,new QTableWidgetItem(vector[i].second[currRow].getDec()));
-                ui->paramsTable->setItem(currRow,4,new QTableWidgetItem(vector[i].second[currRow].getAlg()));
+                fillTableRow(vector[i].second[currRow],ui->paramsTable,currRow);
             }
+
             break;
         }
     }
@@ -86,16 +96,12 @@ void SerializeUserInterface::on_btnAddParameter_clicked(){
 
     int rowCount = ui->paramsTable->rowCount();
     ui->paramsTable->insertRow(rowCount);
-    ui->paramsTable->setItem(rowCount,0,new QTableWidgetItem("Название параметра"));
-    ui->paramsTable->setItem(rowCount,1,new QTableWidgetItem("Размер в битах"));
-    ui->paramsTable->setItem(rowCount,2,new QTableWidgetItem("HEX"));
-    ui->paramsTable->setItem(rowCount,3,new QTableWidgetItem("DEC"));
-    ui->paramsTable->setItem(rowCount,4,new QTableWidgetItem("Алгоритм распаковки"));
 
     int currrentTemplateNumber = ui->listWidget->currentRow();
     for(int i = 0; i < vector.size(); i++){
         if(vector[i].first == currrentTemplateNumber){
             SerializeInfo info;
+            fillTableRow(info,ui->paramsTable,rowCount);
             vector[i].second.append(info);
         }
     }
@@ -105,12 +111,6 @@ void SerializeUserInterface::on_btnSaveParams_clicked(){
 
     int currrentTemplateNumber = ui->listWidget->currentRow();
 
-//    for(int i = 0; i < vector.size(); i++){
-//        if(vector[i].first == currrentTemplateNumber){
-//            SerializeInfo info;
-//            vector[i].second.append(info);
-//        }
-//    }
 
     for( int i = 0; i < vector.size(); i++){
 
