@@ -44,13 +44,9 @@ void MainWindow::on_actionOpen_triggered(){
         qDebug()<<"Error: cannot open file " << fileName;
     }
 
-    QFont font;
-    font.setBold(true);
-    ui->hex_model->setFont(font);
-
     QByteArray data = file.readAll();
-    QString hex_str = QString::fromLatin1(data.toHex(' '));
-    ui->hex_model->setPlainText(hex_str.toUpper());
+
+    ui->hex_model->setData(data);
 
     ui->tableWidgetServiceInfo->setSelectionMode( QAbstractItemView::ExtendedSelection);
     ui->tableWidgetServiceInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -70,11 +66,14 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 
 }
 
+void MainWindow::on_action8_triggered(){
+    ui->hex_model->showBytesInLine8();
+}
 
+void MainWindow::on_action16_triggered(){
+    ui->hex_model->showBytesInLine16();
+}
 
-
-
-
-
-
-
+void MainWindow::on_action32_triggered(){
+    ui->hex_model->showBytesInLine32();
+}

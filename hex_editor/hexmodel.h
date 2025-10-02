@@ -12,10 +12,17 @@
 
 class HexModel : public QTextEdit{
 
+    int byte_characters_count;
+    int bytes_in_line;
 
 public:
     HexModel(QWidget *parent = nullptr);
 
+    void setData(const QByteArray&);
+    void setBytesCountInLine(int);
+    void showBytesInLine8();
+    void showBytesInLine16();
+    void showBytesInLine32();
 };
 
 void separate(std::string&, uint32_t, const char);

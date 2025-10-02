@@ -4,7 +4,40 @@
 
 HexModel::HexModel(QWidget *parent)
 {
+    byte_characters_count = 3;
+    bytes_in_line = 16;
+    this->setLineWrapMode(LineWrapMode::FixedColumnWidth);
+    this->setLineWrapColumnOrWidth(bytes_in_line * byte_characters_count);
+}
 
+void HexModel::setData(const QByteArray &data){
+
+    QFont font;
+    font.setBold(true);
+    this->setFont(font);
+
+    QString hex_str = QString::fromLatin1(data.toHex(' '));
+    this->setPlainText(hex_str.toUpper());
+}
+
+void HexModel::setBytesCountInLine(int count){
+    bytes_in_line = count;
+    this->setLineWrapColumnOrWidth(bytes_in_line * byte_characters_count);
+}
+
+void HexModel::showBytesInLine8(){
+    bytes_in_line = 8;
+    this->setLineWrapColumnOrWidth(24);
+}
+
+void HexModel::showBytesInLine16(){
+    bytes_in_line = 16;
+    this->setLineWrapColumnOrWidth(bytes_in_line * byte_characters_count);
+}
+
+void HexModel::showBytesInLine32(){
+    bytes_in_line = 32;
+    this->setLineWrapColumnOrWidth(bytes_in_line * byte_characters_count);
 }
 
 

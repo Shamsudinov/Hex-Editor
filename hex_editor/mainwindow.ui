@@ -96,11 +96,36 @@
     </property>
     <addaction name="actionOpen"/>
    </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Кратность</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="action8"/>
+    <addaction name="action16"/>
+    <addaction name="action32"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menu_2"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
     <string>Открыть</string>
+   </property>
+  </action>
+  <action name="action8">
+   <property name="text">
+    <string>8 байт</string>
+   </property>
+  </action>
+  <action name="action16">
+   <property name="text">
+    <string>16 байт</string>
+   </property>
+  </action>
+  <action name="action32">
+   <property name="text">
+    <string>32 байта</string>
    </property>
   </action>
  </widget>

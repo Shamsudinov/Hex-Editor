@@ -35,6 +35,12 @@ private slots:
 
     void on_tableView_clicked(const QModelIndex &index);
 
+    void on_action8_triggered();
+
+    void on_action16_triggered();
+
+    void on_action32_triggered();
+
 private:
     SerializeUserInterface *serializeUI;
     HexModel *hexModel;
