@@ -1,7 +1,8 @@
 #ifndef HEXMODEL_H
 #define HEXMODEL_H
 
-#include <QAbstractTableModel>
+#include <QObject>
+#include <QTextEdit>
 #include <QByteArray>
 
 #include <iomanip>
@@ -9,28 +10,11 @@
 #include <iostream>
 #include <vector>
 
-class HexModel : public QAbstractTableModel
-{
-    int rows;
-    int columns;
-    int bufferSize;
-    std::vector<std::vector<char>> matrix;
+class HexModel : public QTextEdit{
+
+
 public:
-    HexModel();
-    ~HexModel();
-
-    void setBufferSize(int);
-    void insertData(const QByteArray&,int,int);
-    void insertData(const std::vector<char>&);
-    void unpdateBuffer(const QByteArray&);
-    void processBuffer(char*,int);
-
-    void setRowCount(int);
-    void setColumnCount(int);
-private:
-    int rowCount(const QModelIndex&) const;
-    int columnCount(const QModelIndex&) const;
-    QVariant data(const QModelIndex&, int) const;
+    HexModel(QWidget *parent = nullptr);
 
 };
 

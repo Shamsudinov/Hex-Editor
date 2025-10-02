@@ -1,81 +1,10 @@
 #include "hexmodel.h"
 
-HexModel::HexModel() :
-    rows(0),
-    columns(0),
-    bufferSize(0),
-    matrix(){
 
-}
 
-HexModel::~HexModel()
+HexModel::HexModel(QWidget *parent)
 {
-    matrix.clear();
-}
 
-void HexModel::setBufferSize(int size){
-    bufferSize = size;
-}
-
-void HexModel::insertData(const QByteArray &data,int row,int column){
-
-}
-void HexModel::insertData(const std::vector<char>& newRows){
-
-}
-
-void HexModel::unpdateBuffer(const QByteArray& data){
-
-    if(!matrix.empty())
-        matrix.clear();
-
-    int currentByte = 0;
-    for(int i = 0; i < rows; i++){
-        std::vector<char> columnData;
-        for(int j = 0; j < columns; j++){
-            if(currentByte < data.size()){
-                columnData.push_back( data.at(currentByte) );
-                currentByte++;
-            }
-        }
-        matrix.push_back(columnData);
-    }
-}
-
-void HexModel::processBuffer(char *data, int size){
-
-}
-
-void HexModel::setRowCount(int rows){
-    this->rows = rows;
-}
-
-void HexModel::setColumnCount(int columns){
-    this->columns = columns;
-}
-
-int HexModel::rowCount(const QModelIndex &parent) const{
-    return rows;
-}
-
-int HexModel::columnCount(const QModelIndex &parent) const{
-    return columns;
-}
-
-QVariant HexModel::data(const QModelIndex &index, int role) const{
-
-
-    if (role == Qt::DisplayRole || role == Qt::EditRole) {
-
-        std::string hex = charToHex(matrix[index.row()][index.column()]);
-        return QByteArray(hex);
-    }
-
-    if (role == Qt::DisplayRole || role == Qt::TextAlignmentRole) {
-        return Qt::AlignCenter;
-    }
-
-    return QVariant();
 }
 
 
