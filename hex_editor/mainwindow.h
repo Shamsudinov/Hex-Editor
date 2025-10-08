@@ -12,7 +12,7 @@
 #include <QFile>
 #include <QByteArray>
 #include <QKeyEvent>
-#include "hexmodel.h"
+#include "hexviewer.h"
 #include "serializeuserinterface.h"
 
 
@@ -43,7 +43,7 @@ private slots:
 
 private:
     SerializeUserInterface *serializeUI;
-    HexModel *hexModel;
+    HexViewer *hexModel;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

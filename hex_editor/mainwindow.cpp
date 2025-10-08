@@ -12,6 +12,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tabWidget->setCurrentIndex(1);
     ui->tab_2->layout()->addWidget(serializeUI);
+
+    QFont font;
+    font.setPointSize(10);
+    font.setFamily(QStringLiteral("Consolas"));
+    font.setBold(true);
+
+    ui->hex_viewer->setFont(font);
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +53,7 @@ void MainWindow::on_actionOpen_triggered(){
 
     QByteArray data = file.readAll();
 
-    ui->hex_model->setData(data);
+    ui->hex_viewer->setData(data);
 
     ui->tableWidgetServiceInfo->setSelectionMode( QAbstractItemView::ExtendedSelection);
     ui->tableWidgetServiceInfo->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -67,13 +74,13 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
 }
 
 void MainWindow::on_action8_triggered(){
-    ui->hex_model->showBytesInLine8();
+    ui->hex_viewer->showBytesInLine8();
 }
 
 void MainWindow::on_action16_triggered(){
-    ui->hex_model->showBytesInLine16();
+    ui->hex_viewer->showBytesInLine16();
 }
 
 void MainWindow::on_action32_triggered(){
-    ui->hex_model->showBytesInLine32();
+    ui->hex_viewer->showBytesInLine32();
 }

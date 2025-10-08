@@ -70,14 +70,7 @@
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="HexModel" name="hex_model" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>500</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
+     <widget class="HexViewer" name="hex_viewer"/>
     </item>
    </layout>
   </widget>
@@ -131,10 +124,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>HexModel</class>
-   <extends>QWidget</extends>
-   <header>hexmodel.h</header>
-   <container>1</container>
+   <class>HexViewer</class>
+   <extends>QTextEdit</extends>
+   <header location="global">hexviewer.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
