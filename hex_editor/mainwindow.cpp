@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     font.setBold(true);
 
     ui->hex_viewer->setFont(font);
+
+    connect(ui->hex_viewer,&HexViewer::cursorPositionChanged,this,&MainWindow::undateServiceInfo);
 }
 
 MainWindow::~MainWindow()
@@ -83,4 +85,11 @@ void MainWindow::on_action16_triggered(){
 
 void MainWindow::on_action32_triggered(){
     ui->hex_viewer->showBytesInLine32();
+}
+
+void MainWindow::undateServiceInfo()
+{
+    int offset = ui->hex_viewer->getByteAddress();
+    ui->tableWidgetServiceInfo->setItem(ROW_CURRENT_POS,COL_HEX,new QTableWidgetItem( QString::number(offset,16) ));
+    ui->tableWidgetServiceInfo->setItem(ROW_CURRENT_POS,COL_DEC,new QTableWidgetItem( QString::number(offset) ));
 }

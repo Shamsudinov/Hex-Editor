@@ -3,10 +3,10 @@
 
 HexViewer::HexViewer(QWidget *parent)
 {
-    _byteCharCount = 3;
-    _bytesPerLine = 16;
+    _byte_char_count = 3;
+    _bytes_per_line = 16;
     this->setLineWrapMode(LineWrapMode::FixedColumnWidth);
-    this->setLineWrapColumnOrWidth(_bytesPerLine * _byteCharCount);
+    this->setLineWrapColumnOrWidth(_bytes_per_line * _byte_char_count);
 }
 
 void HexViewer::setFont(const QFont &font)
@@ -37,60 +37,58 @@ void HexViewer::setData(const QByteArray &data){
     this->setPlainText(hex_str.toUpper());
 }
 
-void HexViewer::setCursorPosition(int position)
-{
-    int pxOfsX = horizontalScrollBar()->value();
-    _bPosFirst = (qint64)pxOfsX * _bytesPerLine;
-    int x = (position % (2 * _bytesPerLine));
-    _pxCursorY = ((position / 2 - _bPosFirst) / _bytesPerLine + 1) * _pxCharHeight;
-    _pxCursorX = (((x / 2) * 3) + (x % 2)) * _pxCharWidth + _pxPosHexX;
-    _cursorPosition = position;
-    _cursorRect = QRect(
-        _pxCursorX - pxOfsX,
-        _pxCursorY - _pxCharHeight + _pxSelectionSub,
-        _pxCharWidth*2,
-        _pxCharHeight
-    );
-    qDebug()<<_cursorRect;
-    viewport()->update(_cursorRect);
-}
-
 void HexViewer::setBytesCountInLine(int count){
-    _bytesPerLine = count;
-    this->setLineWrapColumnOrWidth(_bytesPerLine * _byteCharCount);
+    _bytes_per_line = count;
+    this->setLineWrapColumnOrWidth(_bytes_per_line * _byte_char_count);
 }
 
 void HexViewer::showBytesInLine8(){
-    _bytesPerLine = 8;
+    _bytes_per_line = 8;
     this->setLineWrapColumnOrWidth(24);
 }
 
 void HexViewer::showBytesInLine16(){
-    _bytesPerLine = 16;
-    this->setLineWrapColumnOrWidth(_bytesPerLine * _byteCharCount);
+    _bytes_per_line = 16;
+    this->setLineWrapColumnOrWidth(_bytes_per_line * _byte_char_count);
 }
 
 void HexViewer::showBytesInLine32(){
-    _bytesPerLine = 32;
-    this->setLineWrapColumnOrWidth(_bytesPerLine * _byteCharCount);
+    _bytes_per_line = 32;
+    this->setLineWrapColumnOrWidth(_bytes_per_line * _byte_char_count);
+}
+
+int HexViewer::getRowNumber() const{
+    return _curr_row;
+}
+
+int HexViewer::getByteAddress() const{
+    return _curr_address;
+}
+
+void HexViewer::setCurrRow(int position){
+    _curr_row = position/(_bytes_per_line*_byte_char_count);
+}
+
+void HexViewer::setByteAddress(int position){
+    _curr_address = position/_byte_char_count;
+}
+
+#include <QTextBlock>
+void HexViewer::mousePressEvent(QMouseEvent *event)
+{
+    QTextEdit::mousePressEvent(event); // Вызываем базовый обработчик события
 }
 
 
-//void HexModel::mousePressEvent(QMouseEvent *event){
-//    QTextEdit::mousePressEvent(event);
-//}
 
-void HexViewer::mouseReleaseEvent(QMouseEvent *event)
-{
-    if (event->button() == Qt::LeftButton) {
-//        QTextCursor cursor = this->textCursor();
-//        int position = cursor.position();
-//        setCursorPosition(position);
-//        QTextCursor cursor = this->textCursor();
-//        cursor.select(QTextCursor::WordUnderCursor);
-//        this->setTextCursor(cursor);
-    }
-    QTextEdit::mouseReleaseEvent(event);
+void HexViewer::mouseReleaseEvent(QMouseEvent *event){
+
+    QTextCursor cursor = textCursor(); // Получаем курсор
+    setCurrRow(cursor.position());
+    setByteAddress(cursor.position());
+    qDebug() << getByteAddress();
+    cursorPositionChanged();
+    QTextEdit::mouseReleaseEvent(event); // Вызываем базовый обработчик события
 }
 
 void HexViewer::keyPressEvent(QKeyEvent *event){
@@ -121,12 +119,6 @@ void HexViewer::paintEvent(QPaintEvent *event)
     QTextCursor cursor = textCursor();
     QTextBlock text_block = cursor.block();
 
-    QRect blockRect = this->cursorRect(cursor);
-    blockRect.setLeft(_cursorRect.left());
-    blockRect.setTop(_cursorRect.top());
-    blockRect.setWidth(_cursorRect.width());
-    blockRect.setHeight(_cursorRect.height());
-    painter.drawRect(blockRect);
 
 }
 

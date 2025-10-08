@@ -17,8 +17,10 @@ class HexViewer : public QTextEdit{
     Q_OBJECT
 
     QString hex_str;
-    int _byteCharCount = 3;
-    int _bytesPerLine = 16;
+    int _byte_char_count = 3;
+    int _bytes_per_line = 16;
+    int _curr_row = 0;
+    int _curr_address = 0;
     // other variables
 
     int _pxCharWidth, _pxCharHeight;            // char dimensions (dependend on font)
@@ -26,12 +28,6 @@ class HexViewer : public QTextEdit{
     int _pxCursorWidth;                         // cursor width
     int _pxSelectionSub;                        // offset selection rect
 
-    QRect _cursorRect;
-    int _pxCursorX;                             // current cursor pos
-    int _pxCursorY;                             // current cursor pos
-    int _pxPosHexX;                             // X-Pos of HeaxArea
-    int _cursorPosition;
-    qint64 _bPosFirst;                          // position of first byte shown
 public:
     HexViewer(QWidget *parent = nullptr);
 
@@ -42,8 +38,13 @@ public:
     void showBytesInLine8();
     void showBytesInLine16();
     void showBytesInLine32();
+    int getRowNumber() const;
+    int getByteAddress() const;
+    void setCurrRow(int);
+    void setByteAddress(int);
+
 protected:
-//    void mousePressEvent(QMouseEvent *) override;
+    void mousePressEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
     void keyPressEvent(QKeyEvent *) override;
     void paintEvent(QPaintEvent *) override;

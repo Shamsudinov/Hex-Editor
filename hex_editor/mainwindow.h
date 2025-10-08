@@ -41,7 +41,12 @@ private slots:
 
     void on_action32_triggered();
 
+    void undateServiceInfo();
+
 private:
+    int ROW_CURRENT_POS = 1;
+    int COL_HEX = 0;
+    int COL_DEC = 1;
     SerializeUserInterface *serializeUI;
     HexViewer *hexModel;
     Ui::MainWindow *ui;
